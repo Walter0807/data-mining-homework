@@ -1,0 +1,1074 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Homework 2}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \hypertarget{chapter-4-exercise-4-p.168}{%
+\section{Chapter 4, Exercise 4
+(p.~168)}\label{chapter-4-exercise-4-p.168}}
+
+\hypertarget{a}{%
+\subsection{a}\label{a}}
+
+\[
+(0.95-0.05)*0.1+2\int_{0}^{0.05} (x+0.05)dx = 0.09+0.0075 = 0.0975
+\] (If we ignore \(X<0.05\) and \(X>0.95\), the answer should be 0.1)
+
+\hypertarget{b}{%
+\subsection{b}\label{b}}
+
+Ignoring corner cases, the answer is \(0.01\).
+
+\hypertarget{c}{%
+\subsection{c}\label{c}}
+
+Ignoring corner cases, the answer is \(0.1^{100} = 10^{-100}\)
+
+\hypertarget{d}{%
+\subsection{d}\label{d}}
+
+When \(p\) is large (compared to \(n\)), \(n\) observations would be
+very sparse in the \(p\)-dimension space, making KNN unreliable.
+
+\hypertarget{e}{%
+\subsection{e}\label{e}}
+
+Supppose the length is \(l\), then \[
+l^{p} = 0.1 
+\] \[
+l = {0.1}^{\frac{1}{p}}
+\]
+
+\begin{itemize}
+\item
+  \(p = 1, l = 0.100\)
+\item
+  \(p = 2, l = 0.316\)
+\item
+  \(p = 100, l = 0.977\)
+\end{itemize}
+
+\hypertarget{chapter-4-exercise-6-p.170}{%
+\section{Chapter 4, Exercise 6
+(p.~170)}\label{chapter-4-exercise-6-p.170}}
+
+\hypertarget{a-1}{%
+\subsection{a}\label{a-1}}
+
+\[
+P(Y=1|X_1,X_2) = \frac{e{\beta_0+\beta_1X_1+\beta_2X_2}}{1+e{\beta_0+\beta_1X_1+\beta_2X_2}} = 0.3775
+\]
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} x1 \PY{o}{=} \PY{l+m}{40}
+        x2 \PY{o}{=} \PY{l+m}{3.5}
+        b0 \PY{o}{=} \PY{l+m}{\PYZhy{}6}
+        b1 \PY{o}{=} \PY{l+m}{0.05}
+        b2 \PY{o}{=} \PY{l+m}{1}
+        p \PY{o}{=} \PY{k+kp}{exp}\PY{p}{(}b0\PY{o}{+}b1\PY{o}{*}x1\PY{o}{+}b2\PY{o}{*}x2\PY{p}{)}\PY{o}{/}\PY{p}{(}\PY{l+m}{1}\PY{o}{+}\PY{k+kp}{exp}\PY{p}{(}b0\PY{o}{+}b1\PY{o}{*}x1\PY{o}{+}b2\PY{o}{*}x2\PY{p}{)}\PY{p}{)}
+        p
+\end{Verbatim}
+
+
+    0.377540668798145
+
+    
+    \hypertarget{b}{%
+\subsection{b}\label{b}}
+
+Solve the equation about \(X_1\): \[
+P(Y=1|X_1,X_2) = \frac{e{\beta_0+\beta_1X_1+\beta_2X_2}}{1+e{\beta_0+\beta_1X_1+\beta_2X_2}} = 0.5
+\] That is, \[
+log[\frac{P(Y=1|X_1,X_2)}{P(Y=0|X_1,X_2)}] = \beta_0+\beta_1X_1+\beta_2X_2 = 0
+\] We have \(X_1 = 50\).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} x2 \PY{o}{=} \PY{l+m}{3.5}
+        b0 \PY{o}{=} \PY{l+m}{\PYZhy{}6}
+        b1 \PY{o}{=} \PY{l+m}{0.05}
+        b2 \PY{o}{=} \PY{l+m}{1}
+        x1 \PY{o}{=} \PY{p}{(}\PY{o}{\PYZhy{}}b2\PY{o}{*}x2\PY{o}{\PYZhy{}}b0\PY{p}{)}\PY{o}{/}b1
+        x1
+\end{Verbatim}
+
+
+    50
+
+    
+    \hypertarget{chapter-4-exercise-8-p.170}{%
+\section{Chapter 4, Exercise 8
+(p.~170)}\label{chapter-4-exercise-8-p.170}}
+
+Performing 1-nearest neighbors on training set always produces correct
+result. Therefore the test errror rate of 1-nearest neighbors =
+\(18\%/0.5 = 36\%\). The error rate of logistic regression is \(36\%\),
+so it is better for this case.
+
+\hypertarget{chapter-4-exercise-10-p.171}{%
+\section{Chapter 4, Exercise 10
+(p.~171)}\label{chapter-4-exercise-10-p.171}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{k+kn}{library}\PY{p}{(}ISLR\PY{p}{)}
+        data\PY{p}{(}Weekly\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Warning message:
+“package ‘ISLR’ was built under R version 3.4.2”
+    \end{Verbatim}
+
+    \hypertarget{a}{%
+\subsection{a}\label{a}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{k+kp}{summary}\PY{p}{(}Weekly\PY{p}{)}
+        pairs\PY{p}{(}Weekly\PY{p}{)}
+        \PY{k+kp}{round}\PY{p}{(}cor\PY{p}{(}Weekly\PY{p}{[}\PY{p}{,}\PY{l+m}{\PYZhy{}9}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{l+m}{3}\PY{p}{)}
+\end{Verbatim}
+
+
+    
+    \begin{verbatim}
+      Year           Lag1               Lag2               Lag3         
+ Min.   :1990   Min.   :-18.1950   Min.   :-18.1950   Min.   :-18.1950  
+ 1st Qu.:1995   1st Qu.: -1.1540   1st Qu.: -1.1540   1st Qu.: -1.1580  
+ Median :2000   Median :  0.2410   Median :  0.2410   Median :  0.2410  
+ Mean   :2000   Mean   :  0.1506   Mean   :  0.1511   Mean   :  0.1472  
+ 3rd Qu.:2005   3rd Qu.:  1.4050   3rd Qu.:  1.4090   3rd Qu.:  1.4090  
+ Max.   :2010   Max.   : 12.0260   Max.   : 12.0260   Max.   : 12.0260  
+      Lag4               Lag5              Volume            Today         
+ Min.   :-18.1950   Min.   :-18.1950   Min.   :0.08747   Min.   :-18.1950  
+ 1st Qu.: -1.1580   1st Qu.: -1.1660   1st Qu.:0.33202   1st Qu.: -1.1540  
+ Median :  0.2380   Median :  0.2340   Median :1.00268   Median :  0.2410  
+ Mean   :  0.1458   Mean   :  0.1399   Mean   :1.57462   Mean   :  0.1499  
+ 3rd Qu.:  1.4090   3rd Qu.:  1.4050   3rd Qu.:2.05373   3rd Qu.:  1.4050  
+ Max.   : 12.0260   Max.   : 12.0260   Max.   :9.32821   Max.   : 12.0260  
+ Direction 
+ Down:484  
+ Up  :605  
+           
+           
+           
+           
+    \end{verbatim}
+
+    
+    \begin{tabular}{r|llllllll}
+  & Year & Lag1 & Lag2 & Lag3 & Lag4 & Lag5 & Volume & Today\\
+\hline
+	Year &  1.000 & -0.032 & -0.033 & -0.030 & -0.031 & -0.031 &  0.842 & -0.032\\
+	Lag1 & -0.032 &  1.000 & -0.075 &  0.059 & -0.071 & -0.008 & -0.065 & -0.075\\
+	Lag2 & -0.033 & -0.075 &  1.000 & -0.076 &  0.058 & -0.072 & -0.086 &  0.059\\
+	Lag3 & -0.030 &  0.059 & -0.076 &  1.000 & -0.075 &  0.061 & -0.069 & -0.071\\
+	Lag4 & -0.031 & -0.071 &  0.058 & -0.075 &  1.000 & -0.076 & -0.061 & -0.008\\
+	Lag5 & -0.031 & -0.008 & -0.072 &  0.061 & -0.076 &  1.000 & -0.059 &  0.011\\
+	Volume &  0.842 & -0.065 & -0.086 & -0.069 & -0.061 & -0.059 &  1.000 & -0.033\\
+	Today & -0.032 & -0.075 &  0.059 & -0.071 & -0.008 &  0.011 & -0.033 &  1.000\\
+\end{tabular}
+
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_7_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \texttt{Year} and \texttt{Volume} could have a positive correlation.
+
+\hypertarget{b}{%
+\subsection{b}\label{b}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} fit1 \PY{o}{=} glm\PY{p}{(}Direction \PY{o}{\PYZti{}} Lag1 \PY{o}{+} Lag2 \PY{o}{+} Lag3 \PY{o}{+} Lag4 \PY{o}{+} Lag5 \PY{o}{+} Volume\PY{p}{,} data \PY{o}{=} Weekly\PY{p}{,} 
+            family \PY{o}{=} binomial\PY{p}{)}
+        \PY{k+kp}{summary}\PY{p}{(}fit1\PY{p}{)}
+\end{Verbatim}
+
+
+    
+    \begin{verbatim}
+
+Call:
+glm(formula = Direction ~ Lag1 + Lag2 + Lag3 + Lag4 + Lag5 + 
+    Volume, family = binomial, data = Weekly)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.6949  -1.2565   0.9913   1.0849   1.4579  
+
+Coefficients:
+            Estimate Std. Error z value Pr(>|z|)   
+(Intercept)  0.26686    0.08593   3.106   0.0019 **
+Lag1        -0.04127    0.02641  -1.563   0.1181   
+Lag2         0.05844    0.02686   2.175   0.0296 * 
+Lag3        -0.01606    0.02666  -0.602   0.5469   
+Lag4        -0.02779    0.02646  -1.050   0.2937   
+Lag5        -0.01447    0.02638  -0.549   0.5833   
+Volume      -0.02274    0.03690  -0.616   0.5377   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 1496.2  on 1088  degrees of freedom
+Residual deviance: 1486.4  on 1082  degrees of freedom
+AIC: 1500.4
+
+Number of Fisher Scoring iterations: 4
+
+    \end{verbatim}
+
+    
+    \texttt{Lag2} has more statistical significance.
+
+\hypertarget{c}{%
+\subsection{c}\label{c}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{k+kn}{attach}\PY{p}{(}Weekly\PY{p}{)}
+        threshold \PY{o}{=} \PY{l+m}{0.5}
+        fit1.ans \PY{o}{=} predict\PY{p}{(}fit1\PY{p}{,} type \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{response\PYZdq{}}\PY{p}{)}
+        fit1.preds \PY{o}{=} \PY{k+kp}{ifelse}\PY{p}{(}fit1.ans \PY{o}{\PYZgt{}} \PY{l+m}{0.5}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Up\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Down\PYZdq{}}\PY{p}{)}
+        \PY{k+kp}{table}\PY{p}{(}fit1.preds\PY{p}{,} Direction\PY{p}{)}
+        \PY{k+kp}{mean}\PY{p}{(}fit1.preds \PY{o}{==} Direction\PY{p}{)}
+\end{Verbatim}
+
+
+    
+    \begin{verbatim}
+          Direction
+fit1.preds Down  Up
+      Down   54  48
+      Up    430 557
+    \end{verbatim}
+
+    
+    0.561065197428834
+
+    
+    Overall fraction of correct predictions = \(56.1\%\).
+
+Most incorrect predictions mistake \texttt{Down} for \texttt{Up}
+(\(\frac{430}{430+48} = 90.0\%\)).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} train \PY{o}{=} \PY{p}{(}Year \PY{o}{\PYZlt{}=} \PY{l+m}{2008}\PY{p}{)}
+        train\PYZus{}data \PY{o}{=} Weekly\PY{p}{[}train\PY{p}{,}\PY{p}{]}
+        test\PYZus{}data \PY{o}{=} Weekly\PY{p}{[}\PY{o}{!}train\PY{p}{,}\PY{p}{]}
+        fit2 \PY{o}{=} glm\PY{p}{(}Direction \PY{o}{\PYZti{}} Lag2\PY{p}{,} data \PY{o}{=} train\PYZus{}data\PY{p}{,} family \PY{o}{=} binomial\PY{p}{)}
+        fit2.ans \PY{o}{=} predict\PY{p}{(}fit2\PY{p}{,} test\PYZus{}data\PY{p}{,} type \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{response\PYZdq{}}\PY{p}{)}
+        fit2.preds \PY{o}{=} \PY{k+kp}{ifelse}\PY{p}{(}fit2.ans \PY{o}{\PYZgt{}} \PY{l+m}{0.5}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Up\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Down\PYZdq{}}\PY{p}{)}
+        \PY{k+kp}{table}\PY{p}{(}fit2.preds\PY{p}{,} test\PYZus{}data\PY{o}{\PYZdl{}}Direction\PY{p}{)}
+        \PY{k+kp}{mean}\PY{p}{(}fit2.preds \PY{o}{==} test\PYZus{}data\PY{o}{\PYZdl{}}Direction\PY{p}{)}
+        \PY{k+kn}{detach}\PY{p}{(}Weekly\PY{p}{)}
+\end{Verbatim}
+
+
+    
+    \begin{verbatim}
+          
+fit2.preds Down Up
+      Down    9  5
+      Up     34 56
+    \end{verbatim}
+
+    
+    0.625
+
+    
+    Overall fraction of correct predictions for the held out data =
+\(62.5\%\).
+
+\hypertarget{chapter-5-exercise-5-p.198}{%
+\section{Chapter 5, Exercise 5
+(p.~198)}\label{chapter-5-exercise-5-p.198}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{k+kn}{library}\PY{p}{(}ISLR\PY{p}{)}
+        \PY{k+kn}{attach}\PY{p}{(}Default\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} summary(Default)}
+\end{Verbatim}
+
+
+    \hypertarget{a}{%
+\subsection{a}\label{a}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} fit1 \PY{o}{=} glm\PY{p}{(}default \PY{o}{\PYZti{}} income \PY{o}{+} balance\PY{p}{,} data \PY{o}{=} Default\PY{p}{,} family \PY{o}{=} binomial\PY{p}{)}
+        \PY{k+kp}{summary}\PY{p}{(}fit1\PY{p}{)}
+\end{Verbatim}
+
+
+    
+    \begin{verbatim}
+
+Call:
+glm(formula = default ~ income + balance, family = binomial, 
+    data = Default)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-2.4725  -0.1444  -0.0574  -0.0211   3.7245  
+
+Coefficients:
+              Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -1.154e+01  4.348e-01 -26.545  < 2e-16 ***
+income       2.081e-05  4.985e-06   4.174 2.99e-05 ***
+balance      5.647e-03  2.274e-04  24.836  < 2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 2920.6  on 9999  degrees of freedom
+Residual deviance: 1579.0  on 9997  degrees of freedom
+AIC: 1585
+
+Number of Fisher Scoring iterations: 8
+
+    \end{verbatim}
+
+    
+    \hypertarget{b}{%
+\subsection{b}\label{b}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} TrainAndEvaluate \PY{o}{=} \PY{k+kr}{function}\PY{p}{(}train\PYZus{}ratio\PY{p}{)} \PY{p}{\PYZob{}}
+             \PY{k+kp}{set.seed}\PY{p}{(}\PY{l+m}{2}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{} i.}
+             train \PY{o}{=} \PY{k+kp}{sample}\PY{p}{(}\PY{k+kp}{nrow}\PY{p}{(}Default\PY{p}{)}\PY{p}{,} train\PYZus{}ratio\PY{o}{*}\PY{k+kp}{nrow}\PY{p}{(}Default\PY{p}{)}\PY{p}{)}
+             train\PYZus{}data \PY{o}{=} Default\PY{p}{[}train\PY{p}{,}\PY{p}{]}
+             validate\PYZus{}data \PY{o}{=} Default\PY{p}{[}\PY{o}{\PYZhy{}}train\PY{p}{,}\PY{p}{]}
+             \PY{c+c1}{\PYZsh{} ii.}
+             fit \PY{o}{=} glm\PY{p}{(}default \PY{o}{\PYZti{}} income \PY{o}{+} balance\PY{p}{,} data \PY{o}{=} train\PYZus{}data\PY{p}{,} family \PY{o}{=} binomial\PY{p}{)}
+             \PY{c+c1}{\PYZsh{} iii.    }
+             fit.ans \PY{o}{=} predict\PY{p}{(}fit\PY{p}{,} validate\PYZus{}data\PY{p}{,} type \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{response\PYZdq{}}\PY{p}{)}
+             fit.preds \PY{o}{=} \PY{k+kp}{ifelse}\PY{p}{(}fit.ans \PY{o}{\PYZgt{}} \PY{l+m}{0.5}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Yes\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{No\PYZdq{}}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{} iv.}
+             \PY{k+kr}{return}\PY{p}{(}\PY{k+kp}{mean}\PY{p}{(}fit.preds \PY{o}{!=} validate\PYZus{}data\PY{o}{\PYZdl{}}default\PY{p}{)}\PY{p}{)}
+         \PY{p}{\PYZcb{}}
+         
+         TrainAndEvaluate\PY{p}{(}\PY{l+m}{0.8}\PY{p}{)}
+\end{Verbatim}
+
+
+    0.0215
+
+    
+    \hypertarget{c}{%
+\subsection{c}\label{c}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} TrainAndEvaluate\PY{p}{(}\PY{l+m}{0.5}\PY{p}{)}
+         TrainAndEvaluate\PY{p}{(}\PY{l+m}{0.6}\PY{p}{)}
+         TrainAndEvaluate\PY{p}{(}\PY{l+m}{0.7}\PY{p}{)}
+\end{Verbatim}
+
+
+    0.0276
+
+    
+    0.02725
+
+    
+    0.024
+
+    
+    As the ratio of training data increases, the validation error generally
+reduces.
+
+\hypertarget{d}{%
+\subsection{d}\label{d}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} TrainAndEvaluate \PY{o}{=} \PY{k+kr}{function}\PY{p}{(}train\PYZus{}ratio\PY{p}{)} \PY{p}{\PYZob{}}
+             \PY{k+kp}{set.seed}\PY{p}{(}\PY{l+m}{2}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{} i.}
+             train \PY{o}{=} \PY{k+kp}{sample}\PY{p}{(}\PY{k+kp}{nrow}\PY{p}{(}Default\PY{p}{)}\PY{p}{,} train\PYZus{}ratio\PY{o}{*}\PY{k+kp}{nrow}\PY{p}{(}Default\PY{p}{)}\PY{p}{)}
+             train\PYZus{}data \PY{o}{=} Default\PY{p}{[}train\PY{p}{,}\PY{p}{]}
+             validate\PYZus{}data \PY{o}{=} Default\PY{p}{[}\PY{o}{\PYZhy{}}train\PY{p}{,}\PY{p}{]}
+             \PY{c+c1}{\PYZsh{} ii.}
+             fit \PY{o}{=} glm\PY{p}{(}default \PY{o}{\PYZti{}} income \PY{o}{+} student \PY{o}{+} balance\PY{p}{,} data \PY{o}{=} train\PYZus{}data\PY{p}{,} 
+                       family \PY{o}{=} binomial\PY{p}{)}
+             \PY{c+c1}{\PYZsh{} iii.    }
+             fit.ans \PY{o}{=} predict\PY{p}{(}fit\PY{p}{,} validate\PYZus{}data\PY{p}{,} type \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{response\PYZdq{}}\PY{p}{)}
+             fit.preds \PY{o}{=} \PY{k+kp}{ifelse}\PY{p}{(}fit.ans \PY{o}{\PYZgt{}} \PY{l+m}{0.5}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Yes\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{No\PYZdq{}}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{} iv.}
+             \PY{k+kr}{return}\PY{p}{(}\PY{k+kp}{mean}\PY{p}{(}fit.preds \PY{o}{!=} validate\PYZus{}data\PY{o}{\PYZdl{}}default\PY{p}{)}\PY{p}{)}
+         \PY{p}{\PYZcb{}}
+         
+         TrainAndEvaluate\PY{p}{(}\PY{l+m}{0.5}\PY{p}{)}
+         TrainAndEvaluate\PY{p}{(}\PY{l+m}{0.6}\PY{p}{)}
+         TrainAndEvaluate\PY{p}{(}\PY{l+m}{0.7}\PY{p}{)}
+         TrainAndEvaluate\PY{p}{(}\PY{l+m}{0.8}\PY{p}{)}
+\end{Verbatim}
+
+
+    0.0286
+
+    
+    0.02825
+
+    
+    0.025
+
+    
+    0.022
+
+    
+    Including a dummy variable for student does not lead to a reduction in
+the test error rate.
+
+\hypertarget{chapter-5-exercise-6-p.199}{%
+\section{Chapter 5, Exercise 6
+(p.~199)}\label{chapter-5-exercise-6-p.199}}
+
+\hypertarget{a}{%
+\subsection{a}\label{a}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} fit1 \PY{o}{=} glm\PY{p}{(}default \PY{o}{\PYZti{}} income \PY{o}{+} balance\PY{p}{,} data \PY{o}{=} Default\PY{p}{,} family \PY{o}{=} binomial\PY{p}{)}
+         \PY{k+kp}{summary}\PY{p}{(}fit1\PY{p}{)}
+\end{Verbatim}
+
+
+    
+    \begin{verbatim}
+
+Call:
+glm(formula = default ~ income + balance, family = binomial, 
+    data = Default)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-2.4725  -0.1444  -0.0574  -0.0211   3.7245  
+
+Coefficients:
+              Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -1.154e+01  4.348e-01 -26.545  < 2e-16 ***
+income       2.081e-05  4.985e-06   4.174 2.99e-05 ***
+balance      5.647e-03  2.274e-04  24.836  < 2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 2920.6  on 9999  degrees of freedom
+Residual deviance: 1579.0  on 9997  degrees of freedom
+AIC: 1585
+
+Number of Fisher Scoring iterations: 8
+
+    \end{verbatim}
+
+    
+    Estimated standard error: \(4.985e-06\) for \texttt{income},
+\(2.274e-04\) for \texttt{balance}
+
+\hypertarget{b}{%
+\subsection{b}\label{b}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} boot.fn \PY{o}{=} \PY{k+kr}{function}\PY{p}{(}data\PY{p}{,} index\PY{p}{)} \PY{p}{\PYZob{}}
+             \PY{k+kr}{return}\PY{p}{(}coef\PY{p}{(}glm\PY{p}{(}default \PY{o}{\PYZti{}} income \PY{o}{+} balance\PY{p}{,} 
+             data \PY{o}{=} data\PY{p}{,} family \PY{o}{=} binomial\PY{p}{,} subset \PY{o}{=} index\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \hypertarget{c}{%
+\subsection{c}\label{c}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{k+kn}{library}\PY{p}{(}boot\PY{p}{)}
+         \PY{k+kp}{set.seed}\PY{p}{(}\PY{l+m}{1}\PY{p}{)}
+         boot\PY{p}{(}Default\PY{p}{,} boot.fn\PY{p}{,} \PY{l+m}{50}\PY{p}{)}
+\end{Verbatim}
+
+
+    
+    \begin{verbatim}
+
+ORDINARY NONPARAMETRIC BOOTSTRAP
+
+
+Call:
+boot(data = Default, statistic = boot.fn, R = 50)
+
+
+Bootstrap Statistics :
+         original        bias     std. error
+t1* -1.154047e+01  1.181200e-01 4.202402e-01
+t2*  2.080898e-05 -5.466926e-08 4.542214e-06
+t3*  5.647103e-03 -6.974834e-05 2.282819e-04
+    \end{verbatim}
+
+    
+    \hypertarget{d}{%
+\subsection{d}\label{d}}
+
+There are no significant difference between the estimated standard
+errors produced by two methods.
+
+\hypertarget{chapter-5-exercise-8-p.200}{%
+\section{Chapter 5, Exercise 8
+(p.~200)}\label{chapter-5-exercise-8-p.200}}
+
+\hypertarget{a}{%
+\subsection{a}\label{a}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} set.seed \PY{p}{(}\PY{l+m}{1}\PY{p}{)}
+         y\PY{o}{=}rnorm\PY{p}{(}\PY{l+m}{100}\PY{p}{)}
+         x\PY{o}{=}rnorm\PY{p}{(}\PY{l+m}{100}\PY{p}{)}
+         y\PY{o}{=}x\PY{l+m}{\PYZhy{}2}\PY{o}{*}x\PY{o}{\PYZca{}}\PY{l+m}{2}\PY{o}{+} rnorm\PY{p}{(}\PY{l+m}{100}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{itemize}
+\tightlist
+\item
+  \(n = 100\) (observations)
+\item
+  \(p = 2\) (predictors)
+\item
+  \(Y = -2X^2 + X + \epsilon\) (model)
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} plot\PY{p}{(}x\PY{p}{,}y\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_33_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Quadratic relationship between \(X\) and \(Y\) with noises.
+
+\hypertarget{c}{%
+\subsection{c}\label{c}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}27}]:} polyfits \PY{o}{=} \PY{k+kr}{function}\PY{p}{(}\PY{p}{)} \PY{p}{\PYZob{}}
+             Data \PY{o}{=} \PY{k+kt}{data.frame}\PY{p}{(}x\PY{p}{,} y\PY{p}{)}
+             \PY{c+c1}{\PYZsh{} i.}
+             glm.fit1 \PY{o}{=} glm\PY{p}{(}y \PY{o}{\PYZti{}} x\PY{p}{)}
+             \PY{k+kp}{print}\PY{p}{(}cv.glm\PY{p}{(}Data\PY{p}{,} glm.fit1\PY{p}{)}\PY{o}{\PYZdl{}}delta\PY{p}{)}
+             \PY{c+c1}{\PYZsh{} ii.}
+             glm.fit2 \PY{o}{=} glm\PY{p}{(}y \PY{o}{\PYZti{}} poly\PY{p}{(}x\PY{p}{,} \PY{l+m}{2}\PY{p}{,} raw\PY{o}{=}\PY{k+kc}{TRUE}\PY{p}{)}\PY{p}{)}
+             \PY{k+kp}{print}\PY{p}{(}cv.glm\PY{p}{(}Data\PY{p}{,} glm.fit2\PY{p}{)}\PY{o}{\PYZdl{}}delta\PY{p}{)}
+             \PY{c+c1}{\PYZsh{} iii.}
+             glm.fit3 \PY{o}{=} glm\PY{p}{(}y \PY{o}{\PYZti{}} poly\PY{p}{(}x\PY{p}{,} \PY{l+m}{3}\PY{p}{,} raw\PY{o}{=}\PY{k+kc}{TRUE}\PY{p}{)}\PY{p}{)}
+             \PY{k+kp}{print}\PY{p}{(}cv.glm\PY{p}{(}Data\PY{p}{,} glm.fit3\PY{p}{)}\PY{o}{\PYZdl{}}delta\PY{p}{)}
+             \PY{c+c1}{\PYZsh{} iv.}
+             glm.fit4 \PY{o}{=} glm\PY{p}{(}y \PY{o}{\PYZti{}} poly\PY{p}{(}x\PY{p}{,} \PY{l+m}{4}\PY{p}{,} raw\PY{o}{=}\PY{k+kc}{TRUE}\PY{p}{)}\PY{p}{)}
+             \PY{k+kp}{print}\PY{p}{(}cv.glm\PY{p}{(}Data\PY{p}{,} glm.fit4\PY{p}{)}\PY{o}{\PYZdl{}}delta\PY{p}{)}
+         \PY{p}{\PYZcb{}}
+         
+         \PY{k+kp}{set.seed}\PY{p}{(}\PY{l+m}{1}\PY{p}{)}
+         polyfits\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[1] 5.890979 5.888812
+[1] 1.086596 1.086326
+[1] 1.102585 1.102227
+[1] 1.114772 1.114334
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{k+kp}{set.seed}\PY{p}{(}\PY{l+m}{233}\PY{p}{)}
+         polyfits\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[1] 5.890979 5.888812
+[1] 1.086596 1.086326
+[1] 1.102585 1.102227
+[1] 1.114772 1.114334
+
+    \end{Verbatim}
+
+    Resuts are same, because LOOCV predicts \(n\) observations separately
+using rest of the data, therefore no randomness is introduced.
+
+\hypertarget{e}{%
+\subsection{e}\label{e}}
+
+    The quadratic model has the smallest error, as we expected.
+
+The data are generated using quadratic model, so the model should
+perform better than others.
+
+\hypertarget{f}{%
+\subsection{f}\label{f}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}31}]:} glm.fit1 \PY{o}{=} glm\PY{p}{(}y \PY{o}{\PYZti{}} x\PY{p}{)}
+         glm.fit2 \PY{o}{=} glm\PY{p}{(}y \PY{o}{\PYZti{}} poly\PY{p}{(}x\PY{p}{,} \PY{l+m}{2}\PY{p}{,} raw\PY{o}{=}\PY{k+kc}{TRUE}\PY{p}{)}\PY{p}{)}
+         glm.fit3 \PY{o}{=} glm\PY{p}{(}y \PY{o}{\PYZti{}} poly\PY{p}{(}x\PY{p}{,} \PY{l+m}{3}\PY{p}{,} raw\PY{o}{=}\PY{k+kc}{TRUE}\PY{p}{)}\PY{p}{)}
+         glm.fit4 \PY{o}{=} glm\PY{p}{(}y \PY{o}{\PYZti{}} poly\PY{p}{(}x\PY{p}{,} \PY{l+m}{4}\PY{p}{,} raw\PY{o}{=}\PY{k+kc}{TRUE}\PY{p}{)}\PY{p}{)}
+         \PY{k+kp}{summary}\PY{p}{(}glm.fit1\PY{p}{)}
+         \PY{k+kp}{summary}\PY{p}{(}glm.fit2\PY{p}{)}
+         \PY{k+kp}{summary}\PY{p}{(}glm.fit3\PY{p}{)}
+         \PY{k+kp}{summary}\PY{p}{(}glm.fit4\PY{p}{)}
+\end{Verbatim}
+
+
+    
+    \begin{verbatim}
+
+Call:
+glm(formula = y ~ x)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-7.3469  -0.9275   0.8028   1.5608   4.3974  
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  -1.8185     0.2364  -7.692 1.14e-11 ***
+x             0.2430     0.2479   0.981    0.329    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for gaussian family taken to be 5.580018)
+
+    Null deviance: 552.21  on 99  degrees of freedom
+Residual deviance: 546.84  on 98  degrees of freedom
+AIC: 459.69
+
+Number of Fisher Scoring iterations: 2
+
+    \end{verbatim}
+
+    
+    
+    \begin{verbatim}
+
+Call:
+glm(formula = y ~ poly(x, 2, raw = TRUE))
+
+Deviance Residuals: 
+     Min        1Q    Median        3Q       Max  
+-2.89884  -0.53765   0.04135   0.61490   2.73607  
+
+Coefficients:
+                        Estimate Std. Error t value Pr(>|t|)    
+(Intercept)             -0.09544    0.13345  -0.715    0.476    
+poly(x, 2, raw = TRUE)1  0.89961    0.11300   7.961 3.24e-12 ***
+poly(x, 2, raw = TRUE)2 -1.86665    0.09151 -20.399  < 2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for gaussian family taken to be 1.06575)
+
+    Null deviance: 552.21  on 99  degrees of freedom
+Residual deviance: 103.38  on 97  degrees of freedom
+AIC: 295.11
+
+Number of Fisher Scoring iterations: 2
+
+    \end{verbatim}
+
+    
+    
+    \begin{verbatim}
+
+Call:
+glm(formula = y ~ poly(x, 3, raw = TRUE))
+
+Deviance Residuals: 
+     Min        1Q    Median        3Q       Max  
+-2.87250  -0.53881   0.02862   0.59383   2.74350  
+
+Coefficients:
+                        Estimate Std. Error t value Pr(>|t|)    
+(Intercept)             -0.09865    0.13453  -0.733    0.465    
+poly(x, 3, raw = TRUE)1  0.95551    0.22150   4.314  3.9e-05 ***
+poly(x, 3, raw = TRUE)2 -1.85303    0.10296 -17.998  < 2e-16 ***
+poly(x, 3, raw = TRUE)3 -0.02479    0.08435  -0.294    0.769    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for gaussian family taken to be 1.075883)
+
+    Null deviance: 552.21  on 99  degrees of freedom
+Residual deviance: 103.28  on 96  degrees of freedom
+AIC: 297.02
+
+Number of Fisher Scoring iterations: 2
+
+    \end{verbatim}
+
+    
+    
+    \begin{verbatim}
+
+Call:
+glm(formula = y ~ poly(x, 4, raw = TRUE))
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-2.8914  -0.5244   0.0749   0.5932   2.7796  
+
+Coefficients:
+                        Estimate Std. Error t value Pr(>|t|)    
+(Intercept)             -0.13897    0.15973  -0.870 0.386455    
+poly(x, 4, raw = TRUE)1  0.90980    0.24249   3.752 0.000302 ***
+poly(x, 4, raw = TRUE)2 -1.72802    0.28379  -6.089  2.4e-08 ***
+poly(x, 4, raw = TRUE)3  0.00715    0.10832   0.066 0.947510    
+poly(x, 4, raw = TRUE)4 -0.03807    0.08049  -0.473 0.637291    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for gaussian family taken to be 1.084654)
+
+    Null deviance: 552.21  on 99  degrees of freedom
+Residual deviance: 103.04  on 95  degrees of freedom
+AIC: 298.78
+
+Number of Fisher Scoring iterations: 2
+
+    \end{verbatim}
+
+    
+    Linear and quadratic terms have statistical significance, as shown by
+the p-values. The summary results agree with the CV results.
+
+\hypertarget{chapter-5-exercise-9}{%
+\section{Chapter 5, Exercise 9}\label{chapter-5-exercise-9}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}33}]:} \PY{k+kn}{library}\PY{p}{(}MASS\PY{p}{)}
+         \PY{k+kp}{summary}\PY{p}{(}Boston\PY{p}{)}
+         \PY{k+kn}{attach}\PY{p}{(}Boston\PY{p}{)}
+\end{Verbatim}
+
+
+    
+    \begin{verbatim}
+      crim                zn             indus            chas        
+ Min.   : 0.00632   Min.   :  0.00   Min.   : 0.46   Min.   :0.00000  
+ 1st Qu.: 0.08204   1st Qu.:  0.00   1st Qu.: 5.19   1st Qu.:0.00000  
+ Median : 0.25651   Median :  0.00   Median : 9.69   Median :0.00000  
+ Mean   : 3.61352   Mean   : 11.36   Mean   :11.14   Mean   :0.06917  
+ 3rd Qu.: 3.67708   3rd Qu.: 12.50   3rd Qu.:18.10   3rd Qu.:0.00000  
+ Max.   :88.97620   Max.   :100.00   Max.   :27.74   Max.   :1.00000  
+      nox               rm             age              dis        
+ Min.   :0.3850   Min.   :3.561   Min.   :  2.90   Min.   : 1.130  
+ 1st Qu.:0.4490   1st Qu.:5.886   1st Qu.: 45.02   1st Qu.: 2.100  
+ Median :0.5380   Median :6.208   Median : 77.50   Median : 3.207  
+ Mean   :0.5547   Mean   :6.285   Mean   : 68.57   Mean   : 3.795  
+ 3rd Qu.:0.6240   3rd Qu.:6.623   3rd Qu.: 94.08   3rd Qu.: 5.188  
+ Max.   :0.8710   Max.   :8.780   Max.   :100.00   Max.   :12.127  
+      rad              tax           ptratio          black       
+ Min.   : 1.000   Min.   :187.0   Min.   :12.60   Min.   :  0.32  
+ 1st Qu.: 4.000   1st Qu.:279.0   1st Qu.:17.40   1st Qu.:375.38  
+ Median : 5.000   Median :330.0   Median :19.05   Median :391.44  
+ Mean   : 9.549   Mean   :408.2   Mean   :18.46   Mean   :356.67  
+ 3rd Qu.:24.000   3rd Qu.:666.0   3rd Qu.:20.20   3rd Qu.:396.23  
+ Max.   :24.000   Max.   :711.0   Max.   :22.00   Max.   :396.90  
+     lstat            medv      
+ Min.   : 1.73   Min.   : 5.00  
+ 1st Qu.: 6.95   1st Qu.:17.02  
+ Median :11.36   Median :21.20  
+ Mean   :12.65   Mean   :22.53  
+ 3rd Qu.:16.95   3rd Qu.:25.00  
+ Max.   :37.97   Max.   :50.00  
+    \end{verbatim}
+
+    
+    \hypertarget{a}{%
+\subsection{a}\label{a}}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
